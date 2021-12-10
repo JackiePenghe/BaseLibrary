@@ -149,4 +149,16 @@ public class PermissionUtil {
     public static boolean isPermissionAlwaysDenied(@NonNull Activity activity, String permission) {
        return !ActivityCompat.shouldShowRequestPermissionRationale(activity,permission);
     }
+
+    public static boolean isAnyPermissionAlwaysDenied(@NonNull Activity activity, String... permission) {
+        boolean result = false;
+        for (String s : permission) {
+            boolean b = ActivityCompat.shouldShowRequestPermissionRationale(activity, s);
+            if (b) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 }
